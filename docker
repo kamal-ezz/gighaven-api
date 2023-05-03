@@ -1,0 +1,1 @@
+docker run --name postgres-db -e POSTGRES_USER=kamal -e POSTGRES_PASSWORD=password -e POSTGRES_DB=gighaven-p 5432:5432 -p 8080:8080 -v /postgres:/var/lib/postgresql/data postgres:15.2-alpine
