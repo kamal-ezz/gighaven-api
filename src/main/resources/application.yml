@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:3306/gighaven
+    url: jdbc:postgresql://localhost:5432/gighaven
     username: kamal
     password: password
     #driver-class-name:
