@@ -1,5 +1,6 @@
 package com.kamal.gighaven.models;
 
+import com.kamal.gighaven.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,6 +24,11 @@ public class User {
 
     @Column(nullable = false, updatable = false)
     private String password;
+
+    @Column(unique = true)
+    private String phone;
+
+    private Role role;
 
     @CreatedDate
     private LocalDateTime createdAt;
