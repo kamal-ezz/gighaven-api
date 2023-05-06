@@ -4,29 +4,32 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "users")
-public class User {
+public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private User sender;
 
-    @Column(unique = true)
-    private String email;
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private User receiver;
 
-    @Column(nullable = false, updatable = false)
-    private String password;
+    @ManyToOne
+    @JoinColumn(name = "job_id", nullable = true)
+    private Job job;
+
+    @Column(length = 64000)
+    private String text;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private Profile profile;
 }
