@@ -22,3 +22,8 @@ spring:
 app:
   jwtSecret: JWTSuperSecretKey
   jwtExpirationInMs: 604800000
+
+
+gighaven:
+  message_room:
+    page_size: 500
