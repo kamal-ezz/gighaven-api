@@ -1,7 +1,7 @@
 package com.kamal.gighaven.repositories;
 
-import com.kamal.gighaven.models.Job;
-import com.kamal.gighaven.models.User;
+import com.kamal.gighaven.entities.Job;
+import com.kamal.gighaven.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

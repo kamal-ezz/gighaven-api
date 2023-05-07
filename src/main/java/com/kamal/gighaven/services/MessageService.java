@@ -1,8 +1,8 @@
 package com.kamal.gighaven.services;
 
-import com.kamal.gighaven.models.Job;
-import com.kamal.gighaven.models.Message;
-import com.kamal.gighaven.models.User;
+import com.kamal.gighaven.entities.Job;
+import com.kamal.gighaven.entities.Message;
+import com.kamal.gighaven.entities.User;
 import com.kamal.gighaven.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

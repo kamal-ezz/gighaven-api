@@ -1,6 +1,6 @@
 package com.kamal.gighaven.repositories;
 
-import com.kamal.gighaven.models.User;
+import com.kamal.gighaven.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

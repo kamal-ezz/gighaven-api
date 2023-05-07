@@ -1,6 +1,6 @@
 package com.kamal.gighaven.services;
 
-import com.kamal.gighaven.models.User;
+import com.kamal.gighaven.entities.User;
 import com.kamal.gighaven.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

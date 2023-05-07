@@ -19,10 +19,11 @@ spring:
     user:
       password: jjjj
 
-app:
-  jwtSecret: JWTSuperSecretKey
-  jwtExpirationInMs: 604800000
-
+jwt:
+  secret-key: JWTSuperSecretKeyffffffffffffffffffffffffffffffffff
+  expiration: 604800000
+  refresh-token:
+    expiration: 604800000
 
 gighaven:
   message_room:

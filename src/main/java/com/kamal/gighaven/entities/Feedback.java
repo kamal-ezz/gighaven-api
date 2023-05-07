@@ -1,10 +1,16 @@
-package com.kamal.gighaven.models;
+package com.kamal.gighaven.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Feedback {
 
     @Id

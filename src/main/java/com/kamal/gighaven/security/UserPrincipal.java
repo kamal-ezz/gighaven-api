@@ -1,7 +1,7 @@
 package com.kamal.gighaven.security;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kamal.gighaven.models.User;
+import com.kamal.gighaven.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
