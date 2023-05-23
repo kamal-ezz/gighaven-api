@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -24,4 +26,10 @@ public class Profile {
     @OneToOne
     @JsonBackReference
     private User user;
+
+    @OneToMany
+    private List<Bid> bids;
+
+    @OneToMany
+    private List<Feedback> feedbacks;
 }

@@ -4,7 +4,7 @@ import com.kamal.gighaven.entities.Bid;
 import com.kamal.gighaven.entities.Job;
 import com.kamal.gighaven.entities.User;
 import com.kamal.gighaven.repositories.BidRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,10 +13,13 @@ import java.util.Optional;
 @Service
 public class BidService {
 
-    @Autowired
-    private BidRepository bidRepository;
+    private final BidRepository bidRepository;
 
-    public Bid save(Bid bid) {
+    public BidService(BidRepository bidRepository) {
+        this.bidRepository = bidRepository;
+    }
+
+    public Bid addBid(Bid bid) {
         return bidRepository.save(bid);
     }
 
@@ -49,7 +52,7 @@ public class BidService {
 
     public boolean acceptBid(Bid bid) {
         bid.setAccepted(1);
-        save(bid);
+        addBid(bid);
         return true;
     }
 
