@@ -16,28 +16,28 @@ import java.util.Optional;
 @Service
 public class JobService {
 
-    @Autowired
-    private JobRepository jobRepository;
+    private final JobRepository jobRepository;
 
-    public Optional<Job> get(long id){
+    @Autowired
+    public JobService(JobRepository jobRepository) {
+        this.jobRepository = jobRepository;
+    }
+
+    public Optional<Job> getJobById(long id){
         return jobRepository.findById(id);
     }
 
-    public Job add(Job job){
-
+    public Job addJob(Job job){
         job.setType( job.getType().toLowerCase() );
         job.setExpertizeLevel( job.getExpertizeLevel().toLowerCase() );
 
         return jobRepository.save(job);
     }
 
-    public List<Job> list(){
-
+    public List<Job> getAllJobs(){
         List<Job> result = jobRepository.findAll();
 
-        result.sort( (j1,j2) -> {
-            return j1.getId() > j2.getId() ? -1 : 0;
-        } );
+        result.sort( (j1,j2) -> j1.getId() > j2.getId() ? -1 : 0);
 
         return result;
     }
@@ -52,9 +52,7 @@ public class JobService {
         }
 
         if(result != null) {
-            result.sort( (j1,j2) -> {
-                return j1.getId() > j2.getId() ? -1 : 0;
-            } );
+            result.sort( (j1,j2) -> j1.getId() > j2.getId() ? -1 : 0);
         }
 
         return result;

@@ -16,17 +16,22 @@ import java.util.*;
 @Service
 public class MessageService {
 
-    @Autowired
-    private MessageRepository messageRepository;
+    private final MessageRepository messageRepository;
+
 
     @Value("${gighaven.message_room.page_size}")
     private int messageRoomPageSize;
 
-    public Message save(Message message) {
+    @Autowired
+    public MessageService(MessageRepository messageRepository) {
+        this.messageRepository = messageRepository;
+    }
+
+    public Message addMessage(Message message) {
         return messageRepository.save(message);
     }
 
-    public Optional<Message> get(Long id) {
+    public Optional<Message> getMessageById(Long id) {
         return messageRepository.findById(id);
     }
 
@@ -46,22 +51,17 @@ public class MessageService {
         List<Message> result = new ArrayList<Message>();
         //todo: filter out duplicated (show as rooms)
 
-        Map<String,Message> uniqueRooms = new HashMap<String, Message>();
+        Map<String,Message> uniqueRooms = new HashMap<>();
 
 
         allMessages.forEach(m -> {
-
             // Unique hash map key "job-contributor"
             String key = m.getJob() != null ? String.valueOf( m.getJob().getId()) : "X";
             key += '-';
-            key += (m.getReceiver().getId() == me.getId() ? m.getSender().getId() : m.getReceiver().getId());
+            key += (m.getReceiver().getId().equals(me.getId()) ? m.getSender().getId() : m.getReceiver().getId());
 
             // If room not exist in result add it to unique list
-            Message m2 = uniqueRooms.get(key);
-            if(m2 == null) {
-                uniqueRooms.put(key, m);
-            }
-
+            uniqueRooms.putIfAbsent(key, m);
         });
 
         for(String t_key  : uniqueRooms.keySet()) {

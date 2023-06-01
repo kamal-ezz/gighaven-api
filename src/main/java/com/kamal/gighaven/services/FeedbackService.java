@@ -13,15 +13,18 @@ import java.util.Optional;
 
 @Service
 public class FeedbackService {
+    private final FeedbackRepository feedbackRepository;
 
     @Autowired
-    private FeedbackRepository feedbackRepository;
+    public FeedbackService(FeedbackRepository feedbackRepository) {
+        this.feedbackRepository = feedbackRepository;
+    }
 
-    public Feedback save(Feedback feedback) {
+    public Feedback addFeedback(Feedback feedback) {
         return feedbackRepository.save(feedback);
     }
 
-    public Optional<Feedback> get(Long id) {
+    public Optional<Feedback> getFedbackById(Long id) {
         return feedbackRepository.findById(id);
     }
 

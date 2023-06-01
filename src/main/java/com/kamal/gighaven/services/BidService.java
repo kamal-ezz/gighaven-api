@@ -5,6 +5,7 @@ import com.kamal.gighaven.entities.Job;
 import com.kamal.gighaven.entities.User;
 import com.kamal.gighaven.repositories.BidRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class BidService {
 
     private final BidRepository bidRepository;
 
+    @Autowired
     public BidService(BidRepository bidRepository) {
         this.bidRepository = bidRepository;
     }
@@ -23,7 +25,7 @@ public class BidService {
         return bidRepository.save(bid);
     }
 
-    public Optional<Bid> get(Long id) {
+    public Optional<Bid> getBidById(Long id) {
         return bidRepository.findById(id);
     }
 

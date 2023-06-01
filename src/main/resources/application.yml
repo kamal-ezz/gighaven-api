@@ -28,3 +28,8 @@ jwt:
 gighaven:
   message_room:
     page_size: 500
+  job:
+    page_size: 5
+  see-other-quotes: false
+  freelancer-can-see-freelancers: true
+  client-can-see-jobs: true
