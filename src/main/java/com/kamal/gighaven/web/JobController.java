@@ -21,7 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/job")
+@RequestMapping("/api/v1/jobs")
 public class JobController {
     private final BidService bidService;
     private final JobService jobService;
@@ -39,28 +39,9 @@ public class JobController {
     }
 
     @GetMapping
-    public ResponseEntity<BaseResponse> listJobs(Principal principal, @RequestParam("filter") String filt, @RequestParam("page") String pPage){
+    public ResponseEntity<BaseResponse> getJobs(){
         try {
-
-            User me = helper.getCurrentUser(principal);
-            boolean isMyJobsPage = false;
-
-            Map<String, Object> filter = new HashMap<>();
-
-            if(filt != null && filt.equals("myjobs") && me != null) {
-                filter.put("user", me );
-                isMyJobsPage = true;
-            }
-
-            int pageNo = 1;
-            if(pPage != null) {
-                pageNo = Integer.parseInt(pPage);
-            }
-
-            Page<Job> jobsPage = jobService.findAllPaged(filter, pageNo, jobPageSize);
-
-
-            return ResponseEntity.ok(new BaseResponse(true, null));
+            return ResponseEntity.ok(new BaseResponse(true, jobService.getAllJobs()));
         } catch (Exception ex){
             return ResponseEntity.ok(new BaseResponse(false, ex.getMessage()));
         }

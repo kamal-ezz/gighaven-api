@@ -27,9 +27,7 @@ public class AuthController {
     private final AuthService service;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signup(
-            @RequestBody SignupRequest request
-    ) {
+    public ResponseEntity<?> signup(@RequestBody SignupRequest request) {
 
         try {
             LoginResponse loginResponse = service.signup(request);
@@ -39,9 +37,7 @@ public class AuthController {
         }
     }
     @PostMapping("/login")
-    public ResponseEntity<?> authenticate(
-            @RequestBody LoginRequest request
-    ) {
+    public ResponseEntity<?> authenticate(@RequestBody LoginRequest request) {
         try {
             LoginResponse loginResponse= service.login(request);
             return ResponseEntity.ok(loginResponse);
@@ -52,10 +48,7 @@ public class AuthController {
     }
 
     @PostMapping("/refresh-token")
-    public void refreshToken(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws IOException {
+    public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
         service.refreshToken(request, response);
     }
 

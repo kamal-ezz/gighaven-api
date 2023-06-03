@@ -37,7 +37,7 @@ public class JobService {
     public List<Job> getAllJobs(){
         List<Job> result = jobRepository.findAll();
 
-        result.sort( (j1,j2) -> j1.getId() > j2.getId() ? -1 : 0);
+        //result.sort( (j1,j2) -> j1.getId() > j2.getId() ? -1 : 0);
 
         return result;
     }

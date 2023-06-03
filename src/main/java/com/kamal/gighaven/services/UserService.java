@@ -14,6 +14,7 @@ import com.kamal.gighaven.repositories.ProfileRepository;
 import com.kamal.gighaven.repositories.UserRepository;
 import com.kamal.gighaven.util.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -28,19 +29,25 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ProfileRepository profileRepository;
-    private final Helper helper;
+    private Helper helper;
     private final JobService jobService;
     private final FeedbackService feedbackService;
 
     @Autowired
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       ProfileRepository profileRepository, Helper helper, JobService jobService, FeedbackService feedbackService) {
+                       ProfileRepository profileRepository, JobService jobService, FeedbackService feedbackService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.profileRepository = profileRepository;
-        this.helper = helper;
         this.jobService = jobService;
         this.feedbackService = feedbackService;
+    }
+
+
+    @Lazy
+    @Autowired
+    public void setHelper(Helper helper){
+        this.helper = helper;
     }
 
     public User getUserById(Long id) {
